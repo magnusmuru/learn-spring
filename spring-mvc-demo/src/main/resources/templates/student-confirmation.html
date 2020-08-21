@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Student Confirmation</title>
+</head>
+<body>
+<p th:text="'The student is confirmed: ' + ${student.firstName} + ' ' + ${student.lastName}"/>
+
+<p th:text="'Country: ' + ${student.country}"/>
+
+<p th:text="'Favorite programming language: ' + ${student.programmingLanguage}"/>
+
+<!--
+https://stackoverflow.com/questions/36744655/for-each-operator-in-thymeleaf
+-->
+
+<label>Used operating systems:
+    <table>
+        <th:block th:each="opSys : ${student.operatingSystem}">
+            <tr>
+                <td th:text="'• ' + ${opSys}">...</td>
+            </tr>
+        </th:block>
+    </table>
+</label>
+
+</body>
+</html>
