@@ -77,4 +77,10 @@ public class EmployeeController {
 
         return "redirect:/employees/list";
     }
+
+    @GetMapping("/leaders")
+    public String leaders() {
+
+        return "employees/leaders";
+    }
 }
