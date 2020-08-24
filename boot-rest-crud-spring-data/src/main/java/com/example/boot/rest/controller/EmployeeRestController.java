@@ -1,9 +1,14 @@
 package com.example.boot.rest.controller;
 
 import com.example.boot.rest.entity.Employee;
+import com.example.boot.rest.entity.EmployeeErrorResponse;
+import com.example.boot.rest.exception.EmployeeNotFoundException;
 import com.example.boot.rest.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,7 +43,7 @@ public class EmployeeRestController {
         Employee employee = employeeService.findById(employeeId);
 
         if (employee == null) {
-            throw new RuntimeException("Employee id not found - " + employeeId);
+            throw new EmployeeNotFoundException("Employee id not found - " + employeeId);
         }
 
         return employee;
@@ -75,7 +80,7 @@ public class EmployeeRestController {
         // throw exception if null
 
         if (employee == null) {
-            throw new RuntimeException("Employee id not found - " + employeeId);
+            throw new EmployeeNotFoundException("Employee id not found - " + employeeId);
         }
 
         employeeService.deleteById(employeeId);
